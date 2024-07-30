@@ -34,9 +34,9 @@ class OpeningController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Opening $opening)
     {
-        //
+        return view('opening.show', ['opening' => $opening]);
     }
 
     /**
