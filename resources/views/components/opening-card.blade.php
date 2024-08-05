@@ -14,8 +14,14 @@
             </div>
         </div>
         <div class="flex space-x-1 text-xs">
-            <x-tag >{{Str::ucfirst($opening->experience)}}</x-tag>
-            <x-tag>{{$opening->category}}</x-tag>
+            <x-tag >
+                <a href="{{ route('openings.index', ['experience' => $opening->experience]) }}">
+                    {{Str::ucfirst($opening->experience)}}</a>
+            </x-tag>
+            <x-tag>
+                <a href="{{ route('openings.index', ['category' => $opening->category]) }}">
+                        {{$opening->category}}</a>
+            </x-tag>
         </div>
     </div>
     {{ $slot }}
