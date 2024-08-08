@@ -14,7 +14,9 @@ class OpeningController extends Controller
     {
         $filters = request()->only('search', 'min_salary', 'max_salary', 'experience', 'category');
 
-        return view('opening.index', ['openings' => Opening::filter($filters)->get( ) ]);
+        return view('opening.index',
+            ['openings' => Opening::with('employer')
+                ->filter($filters)->get( ) ]);
     }
 
     /**
@@ -38,7 +40,9 @@ class OpeningController extends Controller
      */
     public function show(Opening $opening)
     {
-        return view('opening.show', ['opening' => $opening]);
+        return view('opening.show', [
+            'opening' => $opening->load('employer.openings')
+        ]);
     }
 
     /**
