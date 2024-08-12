@@ -11,6 +11,29 @@
         <div class="border-transparent border-2 border-t-slate-900 border-l-slate-900 w-4 h-4 rotate-45 relative top-1.5 hover:cursor-pointer"
             onclick="document.documentElement.scrollTop = 0"></div>
     </div>
+    <nav class="flex justify-between mb-16 text-lg font-medium">
+        <ul class="flex space-x-2">
+            <li>
+                <a href="{{ route('openings.index') }}">Home</a>
+            </li>
+
+        </ul>
+        <ul class="flex space-x-2">
+            @auth()
+                <li>{{ auth()->user()->name ?? 'Guest' }}</li>
+                <li>
+                    <form action="{{ route('auth.destroy') }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button>Sing out</button>
+                    </form>
+                </li>
+            @else
+                <a href="{{ route('auth.create') }}">Sing in</a>
+            @endauth
+        </ul>
+
+    </nav>
     {{$slot}}
 
 </body>

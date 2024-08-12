@@ -8,6 +8,6 @@
         </button>
     @endif
 
-    <input type="text" placeholder="{{ $placeholder }}" name="{{ $name }}" value="{{ $value }}" id="{{ $name }}" x-ref="input-{{$name}}"
+    <input type="{{ $type }}" placeholder="{{ $placeholder }}" name="{{ $name }}" value="{{ $value }}" id="{{ $name }}" x-ref="input-{{$name}}"
            class="w-full rounded-md border-0 py-1 px-2.5 pr-8 text-sm ring-1 ring-slate-300 placeholder-slate-400 focus:ring-2"/>
 </div>
