@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Employer;
 use App\Models\Opening;
+use App\Models\OpeningApplication;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -38,6 +39,16 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        foreach ($users as $user) {
+            $openings = \App\Models\Opening::inRandomOrder()->take(rand(0, 4))->get();
+
+            foreach ($openings as $opening) {
+                OpeningApplication::factory()->create([
+                    'opening_id' => $opening->id,
+                    'user_id' => $user->id,
+                ]);
+            }
+        }
 
     }
 }
