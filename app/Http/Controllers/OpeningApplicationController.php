@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Opening;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class OpeningApplicationController extends Controller
 {
@@ -13,6 +14,8 @@ class OpeningApplicationController extends Controller
      */
     public function create(Opening $opening)
     {
+        Gate::authorize('apply', $opening);
+
         return view('opening_application.create', compact('opening'));
     }
 

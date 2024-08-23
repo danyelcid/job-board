@@ -10,7 +10,8 @@ Route::get('', fn () => to_route('openings.index'));
 Route::resource('openings', OpeningController::class)
     ->only('index','show');
 
-Route::get('login', fn () => to_route('auth.create'));
+Route::get('login', fn () => to_route('auth.create'))
+    ->name('login');
 Route::resource('auth', AuthController::class)
     ->only('create','store');
 
