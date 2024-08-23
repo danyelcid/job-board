@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MyOpeningApplicationsController;
 use App\Http\Controllers\OpeningApplicationController;
 use App\Http\Controllers\OpeningController;
 use Illuminate\Support\Facades\Route;
@@ -22,4 +23,7 @@ Route::delete('auth', [AuthController::class, 'destroy'])
 Route::middleware('auth')->group(function () {
     Route::resource('opening.application', OpeningApplicationController::class)
         ->only('create','store');
+
+    Route::resource('my-opening-applications', MyOpeningApplicationsController::class)
+        ->only('index','destroy');
 });

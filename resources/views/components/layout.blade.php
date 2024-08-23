@@ -20,7 +20,11 @@
         </ul>
         <ul class="flex space-x-2">
             @auth()
-                <li>{{ auth()->user()->name ?? 'Guest' }}</li>
+                <li>
+                    <a href="{{ route('my-opening-applications.index') }}">
+                        {{ auth()->user()->name ?? 'Anonymous' }} Applications
+                    </a>
+                </li>
                 <li>
                     <form action="{{ route('auth.destroy') }}" method="POST">
                         @csrf
