@@ -11,7 +11,17 @@ class MyOpeningApplicationsController extends Controller
      */
     public function index()
     {
-        return view('my-opening-applications.index');
+        return view('my-opening-applications.index',
+        [
+            'applications' => auth()->user()
+                ->openingApplications()->with([
+                    'opening' => fn($query) => $query
+                        ->withCount('openingApplications')
+                        ->withAvg('openingApplications', 'expected_salary'),
+                    'opening.employer'])
+                ->latest()
+                ->get()
+        ]);
     }
 
     /**

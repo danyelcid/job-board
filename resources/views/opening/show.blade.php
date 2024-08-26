@@ -18,10 +18,6 @@
             </div>
         @endauth
 
-        @can('apply', $opening)
-            <x-link-button :href=" route('opening.application.create', $opening)">Apply!</x-link-button>
-        @endcan
-
     </x-opening-card>
     <x-card class="mb-4">
         <h2 class="mb-4 text-lg font-medium">
