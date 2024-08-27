@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\OpeningApplication;
 use Illuminate\Http\Request;
 
 class MyOpeningApplicationsController extends Controller
@@ -27,8 +28,10 @@ class MyOpeningApplicationsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(OpeningApplication $myOpeningApplication)
     {
-        //
+        $myOpeningApplication->delete();
+
+        return redirect()->back()->with('success', 'Application deleted');
     }
 }

@@ -10,14 +10,20 @@
                     <p>Your expected salary: ${{ number_format( $application->expected_salary )}}</p>
                     <p>Average asked salary: ${{ number_format( $application->opening->opening_applications_avg_expected_salary )}}</p>
                 </div>
-                <div>2</div>
+                <div>
+                    <form action="{{ route('my-opening-applications.destroy', $application) }}" method="post">
+                        @csrf
+                        @method('delete')
+                        <x-button>Cancel Application</x-button>
+                    </form>
+                </div>
             </div>
         </x-opening-card>
 
     @empty
         <div class="my-8 rounded-md border-l-8 border-slate-300 bg-slate-100 text-slate-700 p-4 shadow-sm" role="alert">
             <p class="font-bold">Notice:</p>
-            <p>You haven't applied for Any opening yet.</p>
+            <p>You haven't applied for an opening yet, but you can <a href="{{ route('openings.index') }}" class="font-semibold text-indigo-700 hover:text-indigo-500 hover:underline">here</a> </p>
         </div>
     @endforelse
 </x-layout>

@@ -40,9 +40,9 @@
     </nav>
 
     @if(session('success'))
-        <div class="my-8 rounded-md border-l-8 border-green-300 bg-green-100 text-green-700 p-4 shadow-sm" role="alert">
-            <p class="font-bold">Success!</p>
-            <p>{{ session('success') }}</p>
+        <div class="my-8 rounded-md border-l-8 border-green-400 bg-green-100 p-4 shadow-sm" role="alert">
+            <p class="text-green-700 font-bold">Success!</p>
+            <p class="text-green-700"> {{ session('success') }}</p>
         </div>
     @endif
 
