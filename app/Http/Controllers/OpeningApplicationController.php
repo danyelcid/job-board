@@ -24,11 +24,20 @@ class OpeningApplicationController extends Controller
      */
     public function store(Request $request, Opening $opening)
     {
+        Gate::authorize('apply', $opening);
+
+        $validatedData = $request->validate([
+            'expected_salary' => 'required| min:1| max:1000000',
+            'cv'=> 'required|file|mimes:pdf,docx,doc|max:2048',
+        ]);
+
+        $file = $request->file('cv');
+        $path = $file->store('cvs', 'private');
+
         $opening->openingApplications()->create([
             'user_id' => auth()->id(),
-            ...$request->validate([
-                'expected_salary' => 'required| min:1| max:1000000'
-            ]),
+            'expected_salary' => $validatedData['expected_salary'],
+            'cv_path' => $path,
         ]);
 
         return redirect()->route('openings.show', $opening)

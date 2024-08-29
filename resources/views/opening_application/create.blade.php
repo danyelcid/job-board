@@ -9,7 +9,8 @@
         <h2 class="mb-4 text-lg font-medium">
             Your Opening Application
         </h2>
-        <form action="{{ route('opening.application.store', $opening) }}" method="post">
+        <form action="{{ route('opening.application.store', $opening) }}"
+              method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-4">
                 <label for="expected_salary"
@@ -17,6 +18,13 @@
                     Expected salary
                 </label>
                 <x-text-input type="number" name="expected_salary"/>
+            </div>
+            <div class="mb-4">
+                <label for="cv"
+                       class="mb-2 block font-medium text-slate-900">
+                    Upload your CV
+                </label>
+                <x-text-input type="file" name="cv"/>
             </div>
             <x-button class="w-full bg-green-100"> Apply </x-button>
         </form>

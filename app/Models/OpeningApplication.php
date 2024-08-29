@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class OpeningApplication extends Model
 {
     use HasFactory;
-    protected $fillable = ['expected_salary', 'user_id', 'opening_id'];
+    protected $fillable = ['expected_salary', 'user_id', 'opening_id','cv_path'];
 
     public function opening(): BelongsTo
     {
