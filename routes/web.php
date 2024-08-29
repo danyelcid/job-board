@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\MyOpeningApplicationsController;
 use App\Http\Controllers\OpeningApplicationController;
 use App\Http\Controllers\OpeningController;
@@ -26,4 +27,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('my-opening-applications', MyOpeningApplicationsController::class)
         ->only('index','destroy');
+
+    Route::resource('employer', EmployerController::class)
+        ->only('create','store');
 });
