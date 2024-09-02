@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\MyOpeningApplicationsController;
+use App\Http\Controllers\MyOpeningController;
 use App\Http\Controllers\OpeningApplicationController;
 use App\Http\Controllers\OpeningController;
 use Illuminate\Support\Facades\Route;
@@ -25,9 +26,13 @@ Route::middleware('auth')->group(function () {
     Route::resource('opening.application', OpeningApplicationController::class)
         ->only('create','store');
 
-    Route::resource('my-opening-applications', MyOpeningApplicationsController::class)
+    Route::resource('my_opening_applications', MyOpeningApplicationsController::class)
         ->only('index','destroy');
 
     Route::resource('employer', EmployerController::class)
         ->only('create','store');
+
+    Route::middleware('employer')
+        ->resource('my_openings', MyOpeningController::class)
+        ->only('index','show');
 });

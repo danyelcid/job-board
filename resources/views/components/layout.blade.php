@@ -21,8 +21,13 @@
         <ul class="flex space-x-2">
             @auth()
                 <li>
-                    <a href="{{ route('my-opening-applications.index') }}">
+                    <a href="{{ route('my_opening_applications.index') }}">
                         {{ auth()->user()->name ?? 'Anonymous' }} Applications
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('my_openings.index') }}">
+                        My Openings
                     </a>
                 </li>
                 <li>

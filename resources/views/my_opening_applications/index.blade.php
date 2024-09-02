@@ -11,7 +11,7 @@
                     <p>Average asked salary: ${{ number_format( $application->opening->opening_applications_avg_expected_salary )}}</p>
                 </div>
                 <div>
-                    <form action="{{ route('my-opening-applications.destroy', $application) }}" method="post">
+                    <form action="{{ route('my_opening_applications.destroy', $application) }}" method="post">
                         @csrf
                         @method('delete')
                         <x-button>Cancel Application</x-button>

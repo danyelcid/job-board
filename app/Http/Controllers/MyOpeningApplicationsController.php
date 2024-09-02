@@ -12,7 +12,7 @@ class MyOpeningApplicationsController extends Controller
      */
     public function index()
     {
-        return view('my-opening-applications.index',
+        return view('my_opening_applications.index',
         [
             'applications' => auth()->user()
                 ->openingApplications()->with([
