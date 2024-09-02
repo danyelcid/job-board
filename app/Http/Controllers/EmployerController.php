@@ -21,7 +21,13 @@ class EmployerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        auth()->user()->employer()->create(
+            $request->validate([
+                'company_name' => 'required|min:3|unique:employers,company_name',
+        ]));
+
+        return redirect()->route('openings.index')
+            ->with('success', 'You have successfully registered as an Employer.');
     }
 
 }

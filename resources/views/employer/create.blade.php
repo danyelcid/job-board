@@ -11,7 +11,7 @@
                 </x-label>
                 <x-text-input type="text" name="company_name"/>
             </div>
-            <x-button class="w-full bg-green-100"> Submit </x-button>
+            <x-button class="w-full"> Create </x-button>
 
         </form>
     </x-card>
