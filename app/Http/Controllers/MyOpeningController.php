@@ -19,7 +19,7 @@ class MyOpeningController extends Controller
      */
     public function create()
     {
-        //
+       return view('my_opening.create');
     }
 
     /**

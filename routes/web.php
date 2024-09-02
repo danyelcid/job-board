@@ -33,6 +33,6 @@ Route::middleware('auth')->group(function () {
         ->only('create','store');
 
     Route::middleware('employer')
-        ->resource('my_openings', MyOpeningController::class)
-        ->only('index','show');
+        ->resource('my_openings', MyOpeningController::class);
+
 });
