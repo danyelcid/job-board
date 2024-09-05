@@ -3,7 +3,7 @@
     :links="['My Applications'=>'#']"/>
     @forelse($applications as $application)
         <x-opening-card :opening="$application->opening">
-            <div class="flex items-center justify-between text-sm text-slate-500">
+            <div class="flex items-end justify-between text-sm text-slate-500">
                 <div>
                     <p>Applied: {{ $application->created_at->diffForHumans() }}</p>
                     <p>Other {{Str::plural('applicant', $application->opening->opening_applications_count -1 ).': '. number_format($application->opening->opening_applications_count -1) }}</p>
