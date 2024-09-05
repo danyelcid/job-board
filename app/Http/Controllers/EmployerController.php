@@ -26,7 +26,7 @@ class EmployerController extends Controller
                 'company_name' => 'required|min:3|unique:employers,company_name',
         ]));
 
-        return redirect()->route('my_openings.index')
+        return redirect()->route('openings.index')
             ->with('success', 'You have successfully registered as an Employer.');
     }
 
