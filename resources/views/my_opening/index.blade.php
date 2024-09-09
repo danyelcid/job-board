@@ -6,6 +6,12 @@
     </div>
     @forelse($openings as $opening)
         <x-opening-card :$opening>
+            <div class="flex space-x-2">
+                <x-link-button href="{{ route('my_openings.edit', $opening) }}">Edit</x-link-button>
+            </div>
+            <div class="my-4">
+                Applications for this opening
+            </div>
             <div class="text-sm  text-slate-500">
                 @forelse($opening->openingApplications as $application)
                     <div class="mb-4 flex justify-between items-end">
@@ -16,6 +22,7 @@
                         </div>
                         <div> Expected Salary: ${{ number_format($application->expected_salary) }}</div>
                     </div>
+
                 @empty
                     <div class="my-4 rounded-md border border-l-4 border-amber-400 bg-amber-50 p-2 shadow-sm" role="alert">
                         <p class="text-amber-800 font-semibold">No applications for this opening yet</p>
@@ -23,6 +30,7 @@
                 @endforelse
 
             </div>
+
         </x-opening-card>
     @empty
         <div class="my-4 rounded-md border border-l-4 border-amber-400 bg-amber-50 p-2 shadow-sm" role="alert">

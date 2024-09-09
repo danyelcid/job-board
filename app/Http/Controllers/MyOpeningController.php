@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OpeningRequest;
 use App\Models\Opening;
 use Illuminate\Http\Request;
 
@@ -32,45 +33,31 @@ class MyOpeningController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(OpeningRequest $request)
     {
-        $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'location' => 'required|string|max:255',
-            'salary' => 'required|numeric|min:5000',
-            'description' => 'required|string',
-            'experience' => 'required|in:'. implode(',', Opening::$experience),
-            'category' => 'required|in:'. implode(',', Opening::$category),
-        ]);
-
-        auth()->user()->employer->openings()->create($validatedData);
+        auth()->user()->employer->openings()->create($request->validated());
 
         return redirect()->route('my_openings.index')
             ->with('success', 'You have successfully created a job opening.');
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Opening $myOpening)
     {
-        //
+        return view('my_opening.edit', ['opening' => $myOpening]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(OpeningRequest $request, Opening $myOpening)
     {
-        //
+        $myOpening->update($request->validated());
+
+        return redirect()->route('my_openings.index')
+            ->with('success', 'You have successfully updated the opening: ' .$myOpening->title . '.');
     }
 
     /**
