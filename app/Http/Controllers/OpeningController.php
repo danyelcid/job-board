@@ -15,7 +15,7 @@ class OpeningController extends Controller
         $filters = request()->only('search', 'min_salary', 'max_salary', 'experience', 'category');
 
         return view('opening.index',
-            ['openings' => Opening::with('employer')
+            ['openings' => Opening::with('employer')->latest()
                 ->filter($filters)->get( ) ]);
     }
 

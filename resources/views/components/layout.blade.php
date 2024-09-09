@@ -45,13 +45,13 @@
     </nav>
 
     @if(session('success'))
-        <div class="my-8 rounded-md border-l-8 border-green-400 bg-green-100 p-4 shadow-sm" role="alert">
+        <div class="my-8 rounded-md border-l-4 border border-green-400 bg-green-50 p-4 shadow-sm" role="alert">
             <p class="text-green-700 font-bold">Success!</p>
             <p class="text-green-700"> {{ session('success') }}</p>
         </div>
     @endif
     @if(session('error'))
-        <div class="my-8 rounded-md border-l-8 border-red-400 bg-red-100 p-4 shadow-sm" role="alert">
+        <div class="my-8 rounded-md border-l-4 border border-red-400 bg-red-50 p-4 shadow-sm" role="alert">
             <p class="text-red-700 font-bold">Error!</p>
             <p class="text-red-700"> {{ session('error') }}</p>
         </div>

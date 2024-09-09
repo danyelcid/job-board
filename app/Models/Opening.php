@@ -13,6 +13,11 @@ use Illuminate\Database\query\Builder as QueryBuilder;
 class Opening extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title', 'location', 'salary', 'description', 'experience', 'category', 'user_id',
+    ];
+
     public static array $experience = ['entry', 'intermediate', 'senior'];
     public static array $category = ['IT', 'Finance', 'Marketing', 'Sales'];
 
