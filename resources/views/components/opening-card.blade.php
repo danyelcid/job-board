@@ -8,9 +8,12 @@
     </div>
     <div class="mb-4 flex justify-between text-sm text-stone-500 items-center">
         <div class="flex">
-            <div class="flex space-x-4">
+            <div class="flex space-x-4 items-center">
                 <p>{{ $opening->employer->company_name }}</p>
                 <p>{{$opening->location}}</p>
+                @if( $opening->deleted_at)
+                    <p class="text-sm text-red-500">Deleted</p>
+                @endif
             </div>
         </div>
         <div class="flex space-x-1 text-xs">

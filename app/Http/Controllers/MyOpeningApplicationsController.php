@@ -15,10 +15,12 @@ class MyOpeningApplicationsController extends Controller
         return view('my_opening_applications.index',
         [
             'applications' => auth()->user()
-                ->openingApplications()->with([
+                ->openingApplications()
+                ->with([
                     'opening' => fn($query) => $query
                         ->withCount('openingApplications')
-                        ->withAvg('openingApplications', 'expected_salary'),
+                        ->withAvg('openingApplications', 'expected_salary')
+                        ->withTrashed(),
                     'opening.employer'])
                 ->latest()
                 ->get()

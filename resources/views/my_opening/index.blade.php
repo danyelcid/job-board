@@ -8,11 +8,14 @@
         <x-opening-card :$opening>
             <div class="flex space-x-2">
                 <x-link-button href="{{ route('my_openings.edit', $opening) }}">Edit</x-link-button>
-                <form action="{{ route('my_openings.destroy', $opening) }}" method="post">
-                    @csrf
-                    @method('delete')
-                    <x-button>Delete</x-button>
-                </form>
+                @if(!$opening->deleted_at)
+                    <form action="{{ route('my_openings.destroy', $opening) }}" method="post">
+                        @csrf
+                        @method('delete')
+                        <x-button>Delete</x-button>
+                    </form>
+                @endif
+
             </div>
 
             <div class="my-4">

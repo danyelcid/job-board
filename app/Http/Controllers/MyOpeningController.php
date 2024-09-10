@@ -19,6 +19,7 @@ class MyOpeningController extends Controller
             'openings' => auth()->user()->employer
                                 ->openings()
                                 ->with(['employer', 'openingApplications', 'openingApplications.user'])
+                                ->withTrashed()
                                 ->get()
         ]);
     }
