@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\OpeningRequest;
 use App\Models\Opening;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class MyOpeningController extends Controller
 {
@@ -13,6 +14,7 @@ class MyOpeningController extends Controller
      */
     public function index()
     {
+        Gate::authorize('viewAnyEmployer', Opening::class);
 
         return view('my_opening.index', [
             'openings' => auth()->user()->employer
@@ -27,6 +29,7 @@ class MyOpeningController extends Controller
      */
     public function create()
     {
+        Gate::authorize('create', Opening::class);
        return view('my_opening.create');
     }
 
@@ -46,6 +49,7 @@ class MyOpeningController extends Controller
      */
     public function edit(Opening $myOpening)
     {
+        Gate::authorize('update', $myOpening);
         return view('my_opening.edit', ['opening' => $myOpening]);
     }
 
@@ -54,6 +58,7 @@ class MyOpeningController extends Controller
      */
     public function update(OpeningRequest $request, Opening $myOpening)
     {
+        Gate::authorize('update', $myOpening);
         $myOpening->update($request->validated());
 
         return redirect()->route('my_openings.index')

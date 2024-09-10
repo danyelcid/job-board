@@ -15,6 +15,10 @@ class OpeningPolicy
     {
         return true;
     }
+    public function viewAnyEmployer(User $user): bool
+    {
+        return true;
+    }
 
     /**
      * Determine whether the user can view the model.
@@ -29,15 +33,25 @@ class OpeningPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return $user->employer !== null;
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Opening $opening): bool
+    public function update(User $user, Opening $opening): bool | Response
     {
-        return false;
+        if ($opening->employer->user_id !== $user->id)
+        {
+          return false;
+        }
+
+        if ( $opening->openingApplications()->count() > 0)
+        {
+            return Response::deny("You can't update an opening with applications!");
+        }
+
+        return true;
     }
 
     /**
@@ -45,7 +59,7 @@ class OpeningPolicy
      */
     public function delete(User $user, Opening $opening): bool
     {
-        return false;
+        return $opening->employer->user_id === $user->id;
     }
 
     /**
@@ -53,7 +67,7 @@ class OpeningPolicy
      */
     public function restore(User $user, Opening $opening): bool
     {
-        return false;
+        return $opening->employer->user_id === $user->id;
     }
 
     /**
@@ -61,7 +75,7 @@ class OpeningPolicy
      */
     public function forceDelete(User $user, Opening $opening): bool
     {
-        return false;
+        return $opening->employer->user_id === $user->id;
     }
 
     public function apply(User $user, Opening $opening): bool
