@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\OpeningRequest;
 use App\Models\Opening;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class MyOpeningController extends Controller
@@ -68,8 +67,10 @@ class MyOpeningController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Opening $myOpening)
     {
-        //
+        $myOpening->delete();
+        return redirect()->route('my_openings.index')
+            ->with('success', 'You have deleted the opening.');
     }
 }
