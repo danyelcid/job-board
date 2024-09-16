@@ -45,17 +45,14 @@
     </nav>
 
     @if(session('success'))
-        <div class="my-8 rounded-md border-l-4 border border-green-400 bg-green-50 p-4 shadow-sm" role="alert">
-            <p class="text-green-700 font-bold">Success!</p>
-            <p class="text-green-700"> {{ session('success') }}</p>
-        </div>
+        <x-alert-msg :type="'success'" :title="'Success!'" :message="session('success')"/>
     @endif
     @if(session('error'))
-        <div class="my-8 rounded-md border-l-4 border border-red-400 bg-red-50 p-4 shadow-sm" role="alert">
-            <p class="text-red-700 font-bold">Error!</p>
-            <p class="text-red-700"> {{ session('error') }}</p>
-        </div>
+        <x-alert-msg :type="'error'" :title="'Error!'" :message="session('error')"/>
     @endif
     {{$slot}}
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
